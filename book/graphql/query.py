@@ -10,8 +10,16 @@ class BookQuery:
 
     def resolve_books(self, _, order_by):
         books = get_book_data()
-        return sort_by(key=order_by, books=books)
+        sorted_books = sort_by(key=order_by, books=books)
+        return [BookField(
+            book_id=book["book_id"],
+            name=book["name"],
+            isbn=book["isbn"],
+            published_at=book["published_at"],
+            author=book["author"],
+            cover=book["cover"],
+        ) for book in sorted_books]
 
-    def resolve_authora(self, _):
+    def resolve_authors(self, _):
         books = get_book_data()
         return group_by_author(books)

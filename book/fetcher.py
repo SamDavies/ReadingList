@@ -6,7 +6,7 @@ ENDPOINT = "https://s3-eu-west-1.amazonaws.com/styl-reading-list/data.json"
 
 
 def get_book_data():
-    return requests.get(ENDPOINT).json()
+    return requests.get(ENDPOINT).json()["books"]
 
 
 def sort_by(key, books):
