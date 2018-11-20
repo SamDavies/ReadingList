@@ -16,6 +16,9 @@ def sort_by(key, books):
     if key == "published_at":
         return sorted(books, key=lambda book: datetime.strptime(book[key], "%Y-%m-%d"), reverse=reverse)
 
+    if key == "name":
+        return sorted(books, key=lambda book: book[key], reverse=reverse)
+
     return books
 
 
