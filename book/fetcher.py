@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests
 
 ENDPOINT = "https://s3-eu-west-1.amazonaws.com/styl-reading-list/data.json"
@@ -12,7 +14,7 @@ def sort_by(key, books):
     key = key if key[0] != "-" else key[1:]
 
     if key == "published_at":
-        return sorted(books, key=lambda book: book[key], reverse=reverse)
+        return sorted(books, key=lambda book: datetime.strptime(book[key], "%Y-%m-%d"), reverse=reverse)
 
     return books
 
