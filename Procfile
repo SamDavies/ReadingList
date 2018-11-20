@@ -1,0 +1,1 @@
+web: gunicorn heroku:app --preload --workers 5
