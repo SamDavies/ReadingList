@@ -1,4 +1,4 @@
-from book.fetcher import get_book_data, sort_by
+from book.fetcher import get_book_data, sort_by, group_by_author
 
 
 def test_get_book_data():
@@ -63,3 +63,30 @@ def test_sort_by_name_descending():
     # Then
     assert sorted_books[0]["book_id"] == 1
     assert sorted_books[1]["book_id"] == 2
+
+
+def test_group_by_author():
+    # Given
+    books = [
+        {"book_id": 2, "author": "a"},
+        {"book_id": 1, "author": "b"},
+        {"book_id": 3, "author": "b"},
+    ]
+
+    # When
+    authors = group_by_author(books)
+
+    # Then
+    expected = [{
+        "name": "a",
+        "books": [
+            {"book_id": 2, "author": "a"},
+        ]
+    }, {
+        "name": "b",
+        "books": [
+            {"book_id": 1, "author": "b"},
+            {"book_id": 3, "author": "b"},
+        ]
+    }]
+    assert authors == expected

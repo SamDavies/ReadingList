@@ -23,4 +23,22 @@ def sort_by(key, books):
 
 
 def group_by_author(books):
-    return books
+    authors = []
+    for book in books:
+
+        def append_book():
+            # Add this book to an existing author if they exist
+            for author in authors:
+                if author["name"] == book["author"]:
+                    author["books"].append(book)
+                    return
+
+            # append a new author to the list
+            authors.append({
+                "name": book["author"],
+                "books": [book]
+            })
+
+        append_book()
+
+    return authors
