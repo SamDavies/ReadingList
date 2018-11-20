@@ -23,7 +23,7 @@ def create_app():
 def configure_blueprints(app):
     """Configure blueprints"""
     from core.api import graphql_api
-    # from geography.restful.routes import countries
+    from book.rest.routes import books
 
     app.register_blueprint(graphql_api)
-    # app.register_blueprint(countries)
+    app.register_blueprint(books)

@@ -8,9 +8,9 @@ class BookQuery:
     books = List(BookField, order_by=String())
     authors = List(AuthorField)
 
-    def resolve_books(self, _, order_by):
+    def resolve_books(self, _, order_by=""):
         books = get_book_data()
-        sorted_books = sort_by(key=order_by, books=books)
+        sorted_books = books if order_by == "" else sort_by(key=order_by, books=books)
         return [BookField(
             book_id=book["book_id"],
             name=book["name"],
