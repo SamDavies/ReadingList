@@ -22,4 +22,14 @@ class BookQuery:
 
     def resolve_authors(self, _):
         books = get_book_data()
-        return group_by_author(books)
+        return [AuthorField(
+            name=author["name"],
+            books=[BookField(
+                book_id=book["book_id"],
+                name=book["name"],
+                isbn=book["isbn"],
+                published_at=book["published_at"],
+                author=book["author"],
+                cover=book["cover"],
+            ) for book in author["books"]]
+        ) for author in group_by_author(books)]

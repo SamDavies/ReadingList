@@ -11,5 +11,5 @@ class BookField(ObjectType):
 
 
 class AuthorField(ObjectType):
-    book_id = Int()
+    name = String()
     books = List(BookField)
